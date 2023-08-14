@@ -1,0 +1,11 @@
+*V1.0***********************************
+Committed: 23-08-14 (FinduschkaLi)
+- initial version containing 
+-- NK, NRPS, FEPS, RAPS models, 
+-- two example files
+-- getP, getVPQ
+-- generateNRPSParameters, generateRAPSParameters, reduceNetwork, drawNetwork
+-- RungeK
+-- license file
+- Files in this commit are the polished versions used for COMPEL 22, PEDG 22, EGRID 23 conferences
+****************************************

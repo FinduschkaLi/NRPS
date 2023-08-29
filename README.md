@@ -38,6 +38,10 @@ To use the NRPS Model MATLAB code, follow these steps:
 
 - **RungeK.m:** File used for solving a differential equation for a time vector t
 
+### Linearization
+
+- **linearizeFEPS.m:** This file calculates a linear model for the FEPS model
+
 ### Model files
 
 - **NK.m:** Nonlinear Kuramoto model
@@ -47,7 +51,7 @@ To use the NRPS Model MATLAB code, follow these steps:
 
 ### Example files
 
-- **example_NRPS.m:** Example file for running the NRPS model
+- **example_NRPS.m:** Example file for running the NRPS model and linearizing it
 - **example_RAPS.m:** Example file for running the RAPS model
 
 ### Visualization

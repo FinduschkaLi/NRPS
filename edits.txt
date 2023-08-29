@@ -9,3 +9,8 @@ Committed: 23-08-14 (FinduschkaLi)
 -- license file
 - Files in this commit are the polished versions used for COMPEL 22, PEDG 22, EGRID 23 conferences
 ****************************************
+*V1.1***********************************
+Committed: 23-08-29 (FinduschkaLi)
+- added linearizeFEPS function
+- edited example NRPS: added linearization example
+****************************************

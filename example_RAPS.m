@@ -333,7 +333,7 @@ for k=1:1:length(figHandles)
     gcf=figHandles(k);
     set (0, 'currentfigure', gcf); 
     if(~isempty(strfind(gcf.Name,"Grounded")))
-        hh = legend("$\!$","$\!$","$G_1$","$G_2$","$G_3$",'NumColumns',2);
+        hh = legend("$\!$","$\!$","$\!$","$G_1$","$G_2$","$G_3$",'NumColumns',2);
     else
         hh = legend("$\!$","$\!$","$\!$","$\!$","$G_1$","$G_2$","$G_3$","$G_4$",'NumColumns',2);
     end

@@ -69,12 +69,12 @@ K=diag(Km)/omega_n*sqrt(3);
 F=zeros(nRED,nRED);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Run both the NRPS and the RAPS model for each set of parameters
+%% Run the NRPS model
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %initial values for voltages, angles and frequencies****************
 E0=ones(nRED,1)*V_n;
 TET0=rand(nRED,1)*2*pi;%randomly distributed resistances
-OMG0=ones(nRED,1)*omega_n;
+OMG0=ones(nRED,1)*omega_n+rand(nRED,1)*2*pi;
 X0=[TET0; OMG0];
 %Init empty arrays**************************************************
 %Time vector
@@ -100,13 +100,32 @@ for i=1:length(tspan)
 end
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% simulate linear system
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%linearize the system: build a linear model with input deltaPset and output omega
+[sA,sB,sC,sD]=linearizeFEPS(zeros(nRED,1),J*omega_n,Dp'*omega_n,zeros(nRED,1),PHI,A);
+%build the vector deltaPset (input)
+deltaPset=PsetData*ones(1,length(tspan))-PsetData; %if you plan to change Pset during the experiment, make sure to use the "delta" w.r.t. your initial values.
+%simulate the linear model: The state vector consists of n-1 grounded
+%angles and n frequencies. 
+OMGLin=lsim(ss(sA,sB,sC,sD),deltaPset,tspan,[TET0(2:end)-TET0(1);OMG0-omega_n])+omega_n;
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% plot results
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+clf;
 figC=0;
 figC=figC+1;
 f=figure(figC);
 f.Name="Omega";
+tiledlayout(2,1,'TileSpacing','tight');
+nexttile;
 plot(tspan,OMG,':')
+ylabel("\omega [rad/s]")
+xlabel("time [s]")
+grid on;
+xlim([tspan(1) tspan(end)])
+nexttile;
+plot(tspan,OMGLin)
 ylabel("\omega [rad/s]")
 xlabel("time [s]")
 grid on;
@@ -174,28 +193,33 @@ margins=[.1 .12 .02 .03];
 figHandles = findall(0,'Type','figure');
 for k=1:1:length(figHandles)
     cfig=figHandles(k);
+    
     h_axes=findobj(cfig,'type','axes');
     pos=get(cfig,"Position");
     pos(3)=sizeFig(1);
     pos(4)=sizeFig(2);
     set(cfig,"Position",pos);
-    pos=get(h_axes(1),"Position");
-    pos(1)=margins(1);
-    pos(2)=margins(2);
-    pos(3)=1-margins(1)-margins(3);
-    pos(4)=(1-margins(2)-margins(4));
-    
-    set(h_axes(1),"Position",pos);
+    if(~strcmp(cfig.Children(1).Type,'tiledlayout'))
+        pos=get(h_axes(1),"Position");
+        pos(1)=margins(1);
+        pos(2)=margins(2);
+        pos(3)=1-margins(1)-margins(3);
+        pos(4)=(1-margins(2)-margins(4));
+        set(h_axes(1),"Position",pos);
+    end
 end
 %% Legends
 figHandles = findall(0,'Type','figure');
 for k=1:1:length(figHandles)
     gcf=figHandles(k);
-    set (0, 'currentfigure', gcf); 
-    if(~isempty(strfind(gcf.Name,"Grounded")))
-        hh = legend("$G_2$");
-    else
-        hh = legend("$G_1$","$G_2$");
+    set (0, 'currentfigure', gcf);
+    h_axes=findobj(gcf,'type','axes');
+    for j=1:length(h_axes)
+        if(~isempty(strfind(gcf.Name,"Grounded")))
+            hh = legend(h_axes(j),"$G_2$");
+        else
+            hh = legend(h_axes(j),"$G_1$","$G_2$");
+        end
     end
     hh.Interpreter = 'latex';
 end

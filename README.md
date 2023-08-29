@@ -5,9 +5,10 @@ This repository contain files for running the NRPS and related models in MATLAB,
 ## Table of Contents
 
 - [Features](#features)
-- [Installation](#installation)
+- [Getting started](#getting-started)
 - [Files](#files)
 - [References](#references)
+- [DOI](#doi)
 
 ## Features
 
@@ -66,3 +67,7 @@ The following papers give an explanation of the models
 - FEPS model: [2] Reissner, Florian, Hang Yin, and George Weiss. "A stability result for network reduced power systems using virtual friction and inertia." IEEE Transactions on Smart Grid 13.3 (2021): 1668-1678.
 - RAPS model: [3] Reissner, Florian, and George Weiss. "The NRPS model and its extensions for modeling grids with multiple
   (virtual) synchronous machines."8th IEEE Workshop on the Electronic Grid (EGRID). IEEE, 2023 (accepted).
+
+## DOI
+This repository is linked to Zenodo:
+[![DOI](https://zenodo.org/badge/677950829.svg)](https://zenodo.org/badge/latestdoi/677950829)

@@ -120,12 +120,14 @@ f.Name="Omega";
 tiledlayout(2,1,'TileSpacing','tight');
 nexttile;
 plot(tspan,OMG,':')
+title("NRPS model")
 ylabel("\omega [rad/s]")
 xlabel("time [s]")
 grid on;
 xlim([tspan(1) tspan(end)])
 nexttile;
 plot(tspan,OMGLin)
+title("Linearized model")
 ylabel("\omega [rad/s]")
 xlabel("time [s]")
 grid on;
@@ -220,6 +222,6 @@ for k=1:1:length(figHandles)
         else
             hh = legend(h_axes(j),"$G_1$","$G_2$");
         end
+        hh.Interpreter = 'latex';
     end
-    hh.Interpreter = 'latex';
 end

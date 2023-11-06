@@ -8,7 +8,7 @@ This repository contain files for running the NRPS and related models in MATLAB,
 - [Getting started](#getting-started)
 - [Files](#files)
 - [References](#references)
-- [DOI](#doi)
+- [Use this](#use-this)
 
 ## Features
 
@@ -68,6 +68,12 @@ The following papers give an explanation of the models
 - RAPS model: [3] Reissner, Florian, and George Weiss. "The NRPS model and its extensions for modeling grids with multiple
   (virtual) synchronous machines."8th IEEE Workshop on the Electronic Grid (EGRID). IEEE, 2023 (accepted).
 
-## DOI
+## Use this
 This repository is linked to Zenodo:
 [![DOI](https://zenodo.org/badge/677950829.svg)](https://zenodo.org/badge/latestdoi/677950829)
+
+Matlab File exchange
+[![File Exchange](https://www.mathworks.com/matlabcentral/images/matlab-file-exchange.svg)](https://de.mathworks.com/matlabcentral/fileexchange/154647-models-for-simulating-electric-grids)
+
+Open in Matlab
+[![Open in MATLAB Online](https://www.mathworks.com/images/responsive/global/open-in-matlab-online.svg)](https://matlab.mathworks.com/open/github/v1?repo=FinduschkaLi/NRPS&file=example_NRPS.m&project=NRPS_Models)

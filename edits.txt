@@ -14,3 +14,12 @@ Committed: 23-08-29 (FinduschkaLi)
 - added linearizeFEPS function
 - edited example NRPS: added linearization example
 ****************************************
+#V1.1a**********************************
+Committed: 23-08-29 (FinduschkaLi)
+- edited Readme
+****************************************
+#V1.1b**********************************
+Committed: 23-11-06 (FinduschkaLi)
+- fixed formatting in example_NRPS
+- added matlab buttons
+****************************************
